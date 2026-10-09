@@ -1,4 +1,4 @@
-# Fortnite GL Autopatch v2.0
+# Fortnite GL Autopatch v1.0
 
 This is a one-click fix for Fortnite UE4 4.19 (Android arm64) on GPUs using OpenGL ES over ANGLE (such as the Samsung Xclipse / Galaxy A57). The tool uses only the standard Python 3.8+ library, meaning no pip, no Java, and no additional downloads are needed. 
 
