@@ -1,4 +1,4 @@
-# Fortnite GL Autopatch v1.0
+# Fortnite GL Patch Tool
 
 This is a one-click fix for Fortnite UE4 4.19 (Android arm64) on GPUs using OpenGL ES over ANGLE (such as the Samsung Xclipse / Galaxy A57). The tool uses only the standard Python 3.8+ library, meaning no pip, no Java, and no additional downloads are needed. 
 
@@ -36,3 +36,18 @@ You can bypass the interactive prompts by passing the file name directly:
 * `--install`
 * `--force`
 * `--verify APK`
+
+## 🤝 Contributing & Anti-Plagiarism Policy
+
+**Pull Requests are highly encouraged!** 
+If you want to help improve this code, optimize the patching process, or fix bugs, please feel free to fork the repository and submit a Pull Request. Your contributions to the community are greatly appreciated.
+
+🚫 **ZERO TOLERANCE FOR CODE THEFT** 🚫
+You are strictly prohibited from taking this code, slightly modifying it (or not modifying it at all), and re-uploading it as your own original creation. 
+
+* **Do not steal this script.**
+* **Do not claim this work as yours.**
+* If you use parts of this script in your own public project, you **must** provide clear, visible credit to this original repository. 
+
+### License
+This project is provided for educational and preservation purposes. While you are free to use it to fix your own legally obtained games and submit improvements back to this repository, the underlying code remains the intellectual property of its original author. Copying and rebranding this tool without permission is strictly forbidden.
