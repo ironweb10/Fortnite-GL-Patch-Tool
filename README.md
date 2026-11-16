@@ -6,7 +6,7 @@ This is a one-click fix for Fortnite UE4 4.19 (Android arm64) on GPUs using Open
 
 ## What It Fixes
 
-* **libUE4.so**: Applies 28 patches based on code signatures to bypass fatal errors when ANGLE cannot link or create GL programs. It protects pointer reads using code caves in free padding and a writable zero-page, and works with versions 5.41 and 6.01.
+* **libUE4.so**: Applies 28 patches based on code signatures to bypass fatal errors when ANGLE cannot link or create GL programs. It protects pointer reads using code caves in free padding and a writable zero-page.
 * **classes.dex**: Fixes issues in stripped "base" APKs where missing classes cause a `NoClassDefFoundError` upon launch. It does this by making `DownloadConfigRules()` return true instantly when `GameActivity$RequestConfigRulesFileTask` is missing.
 * **UE4CommandLine.txt**: Injects `-ExecCmds="r.ProgramBinaryCache.Enable 0"` into the command line. It also injects `-nomcp` if no `-AUTH_` flags are detected.
 * **Signing**: Includes a custom Android v2 signature scheme written entirely in Python. The script generates a key on its first run and stores it in the "tools" folder. This key is reused for future runs, allowing you to update the APK without uninstalling it first.
