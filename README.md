@@ -2,7 +2,7 @@
 
 This is a one-click fix for Fortnite UE4 4.19 (Android arm64) on GPUs using OpenGL ES over ANGLE (such as the Samsung Xclipse / Galaxy A57). The tool uses only the standard Python 3.8+ library, meaning no pip, no Java, and no additional downloads are needed. 
 
-**Tested only on 5.41 and 6.01**
+**Tested on 5.41, 6.01, 6.21**
 
 ## What It Fixes
 
