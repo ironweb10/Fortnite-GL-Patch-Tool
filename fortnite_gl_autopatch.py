@@ -13,6 +13,16 @@ if array('I').itemsize != 4: raise SystemExit('this platform does not have 4-byt
 
 def log(m=''): print(m, flush=True)
 
+def ask_yn(q, default=True):
+    d = 'Y/n' if default else 'y/N'
+    while True:
+        try: r = input('%s [%s]: ' % (q, d)).strip().lower()
+        except EOFError: return default
+        if not r: return default
+        if r in ('y', 'yes', 's', 'si', 'sí'): return True
+        if r in ('n', 'no'): return False
+        print('  Please answer y or n.')
+
 SIGDB = json.loads(zlib.decompress(base64.b64decode(
 "eNrtXVuPpDYW/iujfs6D75d92/0b0WhkA45aSSbRTG+iTbT/fX0FUwVdNrhourbnpT2UMT7n2N+5Yn78++m5f/rHpyejXtQvX7Dk"
 "knDw9MOnp5+fv2Y/fP/5+Xd39dtgvvyh7HUGEKNUEHvt+/NP3+2VH/9+0vYPBPaSSo0/3Q9PkAD7D3M3AmauLX3bAAB110HXlhBw"
@@ -630,6 +640,15 @@ def process_apk(apk, a):
         log('ERROR: patches are missing and --require-all was specified.'); return 3
     if total_missing == len(SIGDB):
         log('\nERROR: no patch points were recognized; this libUE4.so version is not supported.'); return 3
+    if getattr(a, 'interactive', False):
+        log('')
+        if a.nomcp is None:
+            cl0 = 'assets/UE4CommandLine.txt'
+            cur = zi.read(cl0).decode('utf-8', 'replace') if cl0 in zi.namelist() else ''
+            a.nomcp = ask_yn('Add -nomcp to the command line? (optional)', default=not re.search(r'-AUTH_', cur))
+        if not a.no_sign:
+            if not ask_yn('Sign the APK? (if no, it is saved as _unsigned.apk and cannot be installed until you sign it yourself)', default=True):
+                a.no_sign = True
     log('\n[2/4] classes.dex and command line ...')
     if not a.no_dex_fix:
         dexes = {n: zi.read(n) for n in zi.namelist() if re.fullmatch(r'classes\d*\.dex', n)}
@@ -686,6 +705,7 @@ def main():
     if a.verify:
         ok, msg = verify_v2(a.verify); log(('OK: ' if ok else 'FAILED: ') + msg); sys.exit(0 if ok else 1)
     interactive = a.input is None; code = 0
+    a.interactive = interactive
     try:
         src = pick_apk_interactively() if interactive else Path(a.input)
         if not src.exists(): sys.exit('Does not exist: %s' % src)
